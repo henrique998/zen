@@ -2,22 +2,29 @@ import { Separator } from '@/components/Separator';
 import { BrandBg } from '@/components/brandBg';
 import { ButtonsBox } from '@/components/buttonsBox';
 import { Footer } from '@/components/footer';
-import { SignInForm } from '@/components/signIn/form';
-import { SignInHeader } from '@/components/signIn/header';
+import { SignUpForm } from './form';
+import { SignUpHeader } from './header';
 
-export default function SignIn() {
+export default function SignUp() {
   return (
     <main className="grid min-h-screen grid-cols-2">
+      <BrandBg />
+
       <div className="py-4 px-10 flex flex-col items-center justify-between">
-        <SignInHeader />
+        <SignUpHeader />
 
         <div className="w-96">
           <div className="text-center w-[352px]">
-            <h1 className="font-semibold text-[28px] text-zinc-900">Acesse a plataforma</h1>
-            <p className="block mt-2 text-zinc-500 font-sm">Faça login ou registre-se para criar as suas anotações ainda hoje.</p>
+            <h1 className="font-semibold text-[28px] text-zinc-900">
+              Crie sua conta
+            </h1>
+
+            <p className="block mt-2 text-zinc-500 font-sm">
+              Aproveite a plataforma após cria sua conta.
+            </p>
           </div>
 
-          <SignInForm />
+          <SignUpForm />
 
           <Separator />
 
@@ -30,8 +37,6 @@ export default function SignIn() {
 
         <Footer />
       </div>
-
-      <BrandBg />
     </main>
   )
 }
