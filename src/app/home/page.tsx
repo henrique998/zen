@@ -5,7 +5,7 @@ import { Header } from './header';
 
 export default function Home() {
   return (
-    <div>
+    <div className="pb-12">
       <Header />
 
       <Form />

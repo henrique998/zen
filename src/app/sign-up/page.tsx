@@ -20,7 +20,7 @@ export default function SignUp() {
             </h1>
 
             <p className="block mt-2 text-zinc-500 font-sm">
-              Aproveite a plataforma após cria sua conta.
+              Aproveite a plataforma após criar sua conta.
             </p>
           </div>
 
