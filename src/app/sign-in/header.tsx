@@ -4,7 +4,9 @@ import Link from 'next/link';
 export function SignInHeader() {
   return (
     <header className="flex w-full items-center justify-between">
-      <Image src="/default-logo.svg" alt="" width={78} height={30} />
+      <Link href="/">
+        <Image src="/default-logo.svg" alt="" width={78} height={30} />
+      </Link>
 
       <Link 
         href="/sign-up" 

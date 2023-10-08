@@ -5,13 +5,15 @@ export function SignUpHeader() {
   return (
     <header className="flex w-full items-center justify-between">
       <Link 
-        href="/" 
+        href="/sign-in" 
         className="text-sm text-purple-700 hover:underline"
       >
         Entre na sua conta
       </Link>
 
-      <Image src="/default-logo.svg" alt="" width={78} height={30} />
+      <Link href="/">
+        <Image src="/default-logo.svg" alt="" width={78} height={30} />
+      </Link>
     </header>
   )
 }

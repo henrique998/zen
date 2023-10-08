@@ -1,9 +1,9 @@
-import { Separator } from '@/components/Separator';
-import { BrandBg } from '@/components/brandBg';
-import { ButtonsBox } from '@/components/buttonsBox';
-import { Footer } from '@/components/footer';
-import { SignUpForm } from './form';
-import { SignUpHeader } from './header';
+import { Separator } from '@/components/Separator'
+import { BrandBg } from '@/components/brandBg'
+import { Footer } from '@/components/footer'
+import { ButtonsBox } from '../buttonsBox'
+import { SignUpForm } from '../form'
+import { SignUpHeader } from '../header'
 
 export default function SignUp() {
   return (

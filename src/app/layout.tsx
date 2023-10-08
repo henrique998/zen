@@ -1,5 +1,8 @@
+import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+
+import { Toaster } from '@/components/ui/toaster'
 import './globals.css'
 
 const poppins = Poppins({
@@ -18,8 +21,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={poppins.className}>
+          {children}
+          <Toaster />
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }

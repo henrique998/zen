@@ -1,7 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Power } from 'lucide-react';
 import Image from 'next/image';
 import { Avatar } from './Avatar';
+import { SignOutButton } from './sign-out-button';
 import { UpdateProfileContent } from './update-profile-content';
 
 export function Header() {
@@ -22,11 +22,7 @@ export function Header() {
 
             <UpdateProfileContent />
 
-            <button className="w-full flex items-center gap-[10px] p-3 hover:bg-zinc-50 transition-colors">
-              <Power className="h-5 w-5 stroke-zinc-400" />
-
-              <span className="text-zinc-400 text-sm">Sair</span>
-            </button>
+            <SignOutButton />
           </PopoverContent>
         </Popover>
       </div>

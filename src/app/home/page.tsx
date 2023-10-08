@@ -1,7 +1,7 @@
-import { Separator } from '@/components/ui/separator';
-import { TaskList } from './TaskList';
-import { Form } from './form';
-import { Header } from './header';
+import { Separator } from '@/components/ui/separator'
+import { TaskList } from './components/TaskList'
+import { Form } from './components/form'
+import { Header } from './components/header'
 
 export default function Home() {
   return (

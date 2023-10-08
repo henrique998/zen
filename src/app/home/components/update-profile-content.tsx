@@ -1,10 +1,12 @@
 'use client'
 
+import { useUser } from '@clerk/nextjs'
 import { useMemo, useState } from 'react'
 import { UpdateProfileImageForm } from './UpdateProfileImageForm'
 
 export function UpdateProfileContent() {
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
+  const { user } = useUser()
 
   const previewUrl = useMemo(() => {
     if (!avatarFile) return null
@@ -23,7 +25,7 @@ export function UpdateProfileContent() {
           />
         ) : (
           <img 
-            src="https://github.com/henrique998.png" 
+            src={user?.imageUrl}
             alt=""
             className="h-10 w-10 rounded-full object-cover"
           />

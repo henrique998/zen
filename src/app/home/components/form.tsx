@@ -6,6 +6,9 @@ import * as zod from 'zod'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useToast } from '@/components/ui/use-toast'
+import { supabaseClient } from '@/lib/supabase'
+import { useAuth } from '@clerk/nextjs'
 import { PlusCircle } from 'lucide-react'
 
 const taskFormValidationSchema = zod.object({
@@ -15,12 +18,38 @@ const taskFormValidationSchema = zod.object({
 type TaskFormData = zod.infer<typeof taskFormValidationSchema>
 
 export function Form() {
-  const { register, handleSubmit } = useForm<TaskFormData>({
+  const { register, handleSubmit, reset } = useForm<TaskFormData>({
     resolver: zodResolver(taskFormValidationSchema),
   })
 
+  const { toast } = useToast()
+
+  const { userId, getToken } = useAuth()
+
   async function handleCreateTask({ task }: TaskFormData) {
-    console.log(task)
+    const token = await getToken({ template: 'supabase' })
+
+      if (!token) return; 
+
+      const supabase = await supabaseClient(token)
+
+      const { data, error } = await supabase.from('todos').insert({
+        'content': task,
+        'user_id': userId
+      })
+
+      if (error) {
+        toast({
+          variant: 'destructive',
+          title: 'error adding task',
+          description: error.message
+        })
+
+        return;
+      }
+
+      reset()
+      console.log(data)
   }
 
   return (
