@@ -2,7 +2,7 @@
 
 import { useUser } from '@clerk/nextjs'
 import { useMemo, useState } from 'react'
-import { UpdateProfileImageForm } from './UpdateProfileImageForm'
+import { UpdateProfileImageForm } from './update-profile-image-form'
 
 export function UpdateProfileContent() {
   const [avatarFile, setAvatarFile] = useState<File | null>(null)

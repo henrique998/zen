@@ -1,6 +1,6 @@
 'use client'
 
-import { SocialButton } from '@/components/SocialButton'
+import { SocialButton } from '@/components/social-button'
 import { useSignIn } from '@clerk/nextjs'
 import type { OAuthStrategy } from '@clerk/nextjs/server'
 import Image from 'next/image'

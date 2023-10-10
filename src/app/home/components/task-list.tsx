@@ -3,9 +3,7 @@
 import { supabaseClient } from '@/lib/supabase'
 import { useAuth } from '@clerk/nextjs'
 import { useEffect, useState } from 'react'
-import { Task } from './Task'
-
-type Tables = 'todos'
+import { Task } from './task'
 
 type Todo = {
   id: number
@@ -23,9 +21,14 @@ export function TaskList() {
 
       if (!token) return; 
 
-      const supabase = await supabaseClient(token)
+      const supabase = supabaseClient(token)
 
-      const { data } = await supabase.from('todos').select('*').eq('user_id', userId).order('created_at', { ascending: false })
+      const { data } = await supabase
+        .from('todos')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false })
+
       const todosData = data as Todo[]
 
       setTodos(todosData)
@@ -39,6 +42,7 @@ export function TaskList() {
       {todos.map(todo => (
         <Task 
           key={todo.id} 
+          id={todo.id} 
           content={todo.content} 
           isCompleted={todo.isCompleted} 
         />

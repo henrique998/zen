@@ -1,7 +1,7 @@
-import { Separator } from '@/components/Separator'
-import { BrandBg } from '@/components/brandBg'
+import { BrandBg } from '@/components/brand-bg'
 import { Footer } from '@/components/footer'
-import { ButtonsBox } from '../buttonsBox'
+import { Separator } from '@/components/separator'
+import { ButtonsBox } from '../buttons-box'
 import { SignUpForm } from '../form'
 import { SignUpHeader } from '../header'
 

@@ -1,6 +1,6 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import Image from 'next/image';
-import { Avatar } from './Avatar';
+import { Avatar } from './avatar';
 import { SignOutButton } from './sign-out-button';
 import { UpdateProfileContent } from './update-profile-content';
 
