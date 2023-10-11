@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { supabaseClient } from '@/lib/supabase'
+import { useTodosStore } from '@/store/todos-store'
 import { useAuth } from '@clerk/nextjs'
 import { PlusCircle } from 'lucide-react'
 
@@ -25,6 +26,7 @@ export function Form() {
   const { toast } = useToast()
 
   const { userId, getToken } = useAuth()
+  const loadTodos = useTodosStore(state => state.loadTodos)
 
   async function handleCreateTask({ task }: TaskFormData) {
     const token = await getToken({ template: 'supabase' })
@@ -33,7 +35,7 @@ export function Form() {
 
       const supabase = await supabaseClient(token)
 
-      const { data, error } = await supabase.from('todos').insert({
+      const { error } = await supabase.from('todos').insert({
         'content': task,
         'user_id': userId
       })
@@ -49,7 +51,7 @@ export function Form() {
       }
 
       reset()
-      console.log(data)
+      await loadTodos(userId!, token)
   }
 
   return (

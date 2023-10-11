@@ -39,7 +39,7 @@ export function SignInForm() {
 
       const { status, createdSessionId } = await signIn.create({
         identifier: email,
-        password
+        password,
       })
 
       if (status === 'complete') {

@@ -3,6 +3,7 @@
 import { Checkbox } from '@/components/ui/checkbox'
 import { useToast } from '@/components/ui/use-toast'
 import { supabaseClient } from '@/lib/supabase'
+import { useTodosStore } from '@/store/todos-store'
 import { useAuth } from '@clerk/nextjs'
 import { Trash2 } from 'lucide-react'
 import { useState } from 'react'
@@ -18,6 +19,7 @@ interface TaskProps {
 export function Task({ id, content, isCompleted = false }: TaskProps) {
   const [checked, setChecked] = useState<CheckStates>(isCompleted)
   const { getToken, userId } = useAuth()
+  const loadTodos = useTodosStore(state => state.loadTodos)
   const { toast } = useToast()
 
   async function handleToggleCheckTask() {
@@ -32,11 +34,15 @@ export function Task({ id, content, isCompleted = false }: TaskProps) {
       await supabase.from('todos')
       .update({ isCompleted: false })
       .eq('id', id)
+
+      await loadTodos(userId!, token)
     } else {
       setChecked(true)
       await supabase.from('todos')
         .update({ isCompleted: true })
         .eq('id', id)
+
+        await loadTodos(userId!, token)
     }
   }
 
@@ -48,10 +54,9 @@ export function Task({ id, content, isCompleted = false }: TaskProps) {
 
     const supabase = supabaseClient(token)
 
-    const { data, error } = await supabase.from('todos').delete().eq('id', id)
+    const { error } = await supabase.from('todos').delete().eq('id', id)
 
     if (error) {
-      console.log(error)
       toast({
         variant: 'destructive',
         title: 'Auth Error',
@@ -59,9 +64,7 @@ export function Task({ id, content, isCompleted = false }: TaskProps) {
       })
     }
 
-    if (data) {
-      console.log(data)
-    }
+    await loadTodos(userId!, token)
   }
 
   return (

@@ -1,45 +1,29 @@
 'use client'
 
-import { supabaseClient } from '@/lib/supabase'
+import { useTodosStore } from '@/store/todos-store'
 import { useAuth } from '@clerk/nextjs'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Task } from './task'
-
-type Todo = {
-  id: number
-  content: string
-  isCompleted: boolean 
-}
 
 export function TaskList() {
   const { userId, getToken } = useAuth()
-  const [todos, setTodos] = useState<Todo[]>([])
+  const [todos, loadTodos] = useTodosStore(state => [state.todos, state.loadTodos])
 
   useEffect(() => {
-    async function loadTodos() {
+    async function setupTodos() {
       const token = await getToken({ template: 'supabase' })
 
-      if (!token) return; 
+      if (!token || !userId) return; 
 
-      const supabase = supabaseClient(token)
+      loadTodos(userId, token)
+    }
 
-      const { data } = await supabase
-        .from('todos')
-        .select('*')
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false })
-
-      const todosData = data as Todo[]
-
-      setTodos(todosData)
-    }  
-
-    loadTodos()
+    setupTodos()
   }, [])
 
   return (
     <ul className="mt-16 max-w-[696px] w-full mx-auto space-y-4">
-      {todos.map(todo => (
+      {todos?.map(todo => (
         <Task 
           key={todo.id} 
           id={todo.id} 
