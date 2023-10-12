@@ -6,17 +6,18 @@ import { TaskList } from './components/task-list'
 
 export default function Home() {
   return (
-    <div className="pb-12">
+    <main className="pb-12">
       <Header />
 
-      <Form />
+      <div className="px-4">
+        <Form />
 
-      <Statistics />
+        <Statistics />
 
-      <Separator className="w-[696px] mx-auto" />
+        <Separator className="w-[696px] mx-auto" />
 
-      {/* <EmptyTasksBox /> */}
-      <TaskList />
-    </div>
+        <TaskList />
+      </div>
+    </main>
   )
 }

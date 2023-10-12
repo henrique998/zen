@@ -1,6 +1,6 @@
 import { ClipboardList } from 'lucide-react'
 
-export function EmptyTasksBox() {
+export function EmptyTodosBox() {
   return (
     <div className="flex flex-col items-center justify-center gap-5 mt-16">
       <ClipboardList className="h-20 w-20 stroke-zinc-200 stroke-2" />

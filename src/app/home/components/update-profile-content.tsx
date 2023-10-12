@@ -1,12 +1,11 @@
 'use client'
 
-import { useUser } from '@clerk/nextjs'
 import { useMemo, useState } from 'react'
+import { Avatar } from './avatar'
 import { UpdateProfileImageForm } from './update-profile-image-form'
 
 export function UpdateProfileContent() {
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
-  const { user } = useUser()
 
   const previewUrl = useMemo(() => {
     if (!avatarFile) return null
@@ -24,11 +23,7 @@ export function UpdateProfileContent() {
             className="h-10 w-10 rounded-full object-cover"
           />
         ) : (
-          <img 
-            src={user?.imageUrl}
-            alt=""
-            className="h-10 w-10 rounded-full object-cover"
-          />
+          <Avatar />
         )}
 
         <span className="text-sm text-zinc-500">Foto de perfil</span>

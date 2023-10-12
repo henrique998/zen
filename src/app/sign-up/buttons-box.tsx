@@ -1,6 +1,6 @@
 'use client'
 
-import { SocialButton } from '@/components/SocialButton'
+import { SocialButton } from '@/components/social-button'
 import { useSignUp } from '@clerk/nextjs'
 import { OAuthStrategy } from '@clerk/nextjs/server'
 import Image from 'next/image'
@@ -14,7 +14,7 @@ export function ButtonsBox() {
 
     return signUp.authenticateWithRedirect({
       strategy,
-      redirectUrl: '/home',
+      redirectUrl: '/sso-callback',
       redirectUrlComplete: '/home'
     })
   }, [])

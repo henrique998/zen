@@ -10,13 +10,13 @@ import { useState } from 'react'
 
 type CheckStates = boolean | 'indeterminate'
 
-interface TaskProps {
+interface TodoProps {
   id: number
   content: string
   isCompleted: boolean
 }
 
-export function Task({ id, content, isCompleted = false }: TaskProps) {
+export function Todo({ id, content, isCompleted = false }: TodoProps) {
   const [checked, setChecked] = useState<CheckStates>(isCompleted)
   const { getToken, userId } = useAuth()
   const loadTodos = useTodosStore(state => state.loadTodos)

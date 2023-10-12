@@ -46,7 +46,7 @@ export function UpdateProfileImageForm({ onSelected }: UpdateProfileImageFormPro
     } catch (err: any) {
       toast({
         variant: 'destructive',
-        title: 'Auth Error',
+        title: 'Upload Error',
         description: err.errors[0].longMessage,
       })
     } finally {

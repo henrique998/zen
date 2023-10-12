@@ -1,19 +1,21 @@
 'use client'
 
 import { SocialButton } from '@/components/social-button'
+import { useToast } from '@/components/ui/use-toast'
 import { useSignIn } from '@clerk/nextjs'
 import type { OAuthStrategy } from '@clerk/nextjs/server'
 import Image from 'next/image'
 
 export function ButtonsBox() {
   const { isLoaded, signIn } = useSignIn()
+  const { toast } = useToast()
 
   function signInWith(strategy: OAuthStrategy) {
     if (!isLoaded) return
 
     return signIn.authenticateWithRedirect({
       strategy,
-      redirectUrl: '/home',
+      redirectUrl: '/sso-callback',
       redirectUrlComplete: '/home'
     })
   }
