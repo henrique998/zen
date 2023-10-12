@@ -2,7 +2,7 @@ import { Separator } from '@/components/ui/separator'
 import { Form } from './components/form'
 import { Header } from './components/header'
 import { Statistics } from './components/statistics'
-import { TaskList } from './components/task-list'
+import { TodoList } from './components/todo-list'
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
 
         <Separator className="w-[696px] mx-auto" />
 
-        <TaskList />
+        <TodoList />
       </div>
     </main>
   )
